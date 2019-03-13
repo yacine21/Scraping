@@ -1,0 +1,14 @@
+<productListing title="Some Products">
+    <product>
+        <name>Hoodie</name>
+        <description>Black Hoodie for fake hackers</description>
+        <cost>&#8364;40</cost>
+        <shipping>&#8364;4</shipping>
+    </product>
+    <product>
+        <name>Hat</name>
+        <description>Black Hat for fake hackers</description>
+        <cost>&#8364;15</cost>
+        <shipping>&#8364;4</shipping>
+    </product>
+<product id="3"><name>Vendetta Mask</name><description>Vendetta Mask like Anonymous</description><cost>&#8364;20</cost><shipping>&#8364;4</shipping></product><product id="3"><name>Vendetta Mask</name><description>Vendetta Mask like Anonymous</description><cost>&#8364;8</cost><shipping>&#8364;4</shipping></product></productListing>
