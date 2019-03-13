@@ -21,7 +21,7 @@ def get_services(connection):
     column_names = [column_desc[0] for column_desc in cursor.description]
     return [dict(zip(column_names,row)) for row in cursor]
 
-def get_service_id(services , text):
+def get_service_id(services , name):
     for service in services:
         if service['name'] == name:
             return service['id']
@@ -31,10 +31,15 @@ def get_service_id(services , text):
 def station_services(pdv_liste,services):
         result = []
         for pdv in pdv_liste:
-                station_id = pdv.attrib(['id']
-                for service in pdv.find('services').findall('service'):
+                station_id = pdv.attrib['id']
+                for service in pdv.find('services'):
                         name = service.text
                         service_id = get_service_id(services , name)
                         result.append((station_id, service_id))
         return result
 
+def insert_station_services(connection , station_services):
+        cursor = connection.cursor()
+        statement="INSERT INTO StationService(stationId , serviceId) VALUES(%s,%s);"
+        cursor.executemany(statement,station_services)
+        connection.commit()
