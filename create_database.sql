@@ -17,11 +17,11 @@ CREATE TABLE Station(
     postalcode CHAR(5) NOT NULL,
     gps POINT,
     position ENUM('A','R','N') NOT NULL,
-    automate BOOL NOT NULL,
+    automate BOOLEAN NOT NULL,
 );
 
 CREATE TABLE Service(
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(250) NOT NULL
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE StationService(
 );
 
 CREATE TABLE Price(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     stationId INT NOT NULL,
     productId INT NOT NULL,
     date DATETIME NOT NULL,
