@@ -10,6 +10,21 @@ def insert_services(connection, services):
     for service in services:
         data.append((service, ))
         cursor = connection.cursor()
-        statement = "INSERT INTO Service(name) VALUES(%s)"
+        statement = "INSERT INTO Service(name) VALUES(%s);"
         cursor.executemany(statement, data)
         connection.commit()
+
+def get_services(connection):
+    cursor = connection.cursor()
+    statement ="SELECT * FROM Service;"
+    cursor.execute(statement)
+    column_names = [column_desc[0] for column_desc in cursor.description]
+    return [dict(zip(column_names,row)) for row in cursor]
+
+def get_service_id(services , text):
+    for service in services:
+        if service['name'] == name:
+            return service['id']
+    return None
+
+
