@@ -7,6 +7,16 @@ from product import *
 from stations import *
 from price import *
 
+def clear_db(connection):
+    cursor = connection.cursor()
+    cursor.execute("DELETE FROM Closing;")
+    cursor.execute("DELETE FROM Price;")
+    cursor.execute("DELETE FROM Shortage;")
+    cursor.execute("DELETE FROM StationService;")
+    cursor.execute("DELETE FROM Station;")
+    cursor.execute("DELETE FROM Product;")
+    cursor.execute("DELETE FROM Service;")
+
 def main():
     dotenv.load_dotenv()
     connection = mysql.connector.connect(
@@ -15,19 +25,21 @@ def main():
 
     base_path = os.path.dirname(os.path.realpath(__file__))
     xml_file = os.path.join(base_path,"data/PrixCarburants_annuel_2019.xml")
-
-    tree = et.parse(xml_file)
+   
+    tree = et.parse(sys.argv[1])
     pdv_liste = tree.getroot()
-    #print(get_services(connection))
-    srv = get_services(connection)
-    #insert_products(connection , products(pdv_liste))
-    # print(get_products(connection))
-    #print(get_stations(connection))
-    # insert_stations(connection,stations(pdv_liste))
-    # insert_station_services(connection , station_services(pdv_liste,srv))
-    insert_products(connection ,products(pdv_liste) )
+    clear_db(connection)
+    insert_services(connection ,services(pdv_liste))
+    insert_products(connection ,products(pdv_liste))
+    insert_stations(connection ,stations(pdv_liste))
+    insert_station_services(connection, station_services(pdv_liste,get_services(connection)))
+    insert_prices(connection, prices(pdv_liste))
+    insert_shortages(connection,shortages(pdv_liste))
+    insert_closing(connection, closing(pdv_liste))
 
-    insert_prices(connection , prices(pdv_liste))
+    connection.commit()
+
+    
 if __name__ == '__main__':
     main()
 
