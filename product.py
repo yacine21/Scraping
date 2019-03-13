@@ -4,7 +4,7 @@ def products(pdv_liste):
         for price in pdv.findall('prix'):
             if len(price.attrib)==0: continue
             products.add((int(price.attrib['id']), price.attrib['nom'])
-    return list(products)
+    return products
     
 def insert_products(connetion , products):
     cursor = connetion.cursor()

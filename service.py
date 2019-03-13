@@ -28,3 +28,13 @@ def get_service_id(services , text):
     return None
 
 
+def station_services(pdv_liste,services):
+        result = []
+        for pdv in pdv_liste:
+                station_id = pdv.attrib(['id']
+                for service in pdv.find('services').findall('service'):
+                        name = service.text
+                        service_id = get_service_id(services , name)
+                        result.append((station_id, service_id))
+        return result
+
