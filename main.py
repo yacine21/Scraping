@@ -2,15 +2,15 @@ import os
 import socket
 import xml.etree.ElementTree as et
 import mysql.connector 
-
+import dotenv
 #host = socket.gethostbyname('dbs-perso.luminy.univmed.fr')
-db = mysql.connector.connect(
-    host ='139.124.69.90',
-    database='o17028459',
-    user='o17028459',
-    passwd='fijxCh6t'
+dotenv.load_dotenv()
+
+connection = mysql.connector.connect(
+    host=os.getenv('dbHostname'), user = os.getenv('dbUser') , passwd = os.getenv('dbPass') , database=os.getenv('dbName')
 )
-print(db)
+print(connection)
+
 base_path = os.path.dirname(os.path.realpath(__file__))
 xml_file = os.path.join(base_path,"data/sample.xml")
 tree = et.parse(xml_file)
