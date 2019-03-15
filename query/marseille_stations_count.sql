@@ -1,0 +1,1 @@
+SELECT COUNT(*) as NombreDeStation FROM Station WHERE city = 'Marseille';

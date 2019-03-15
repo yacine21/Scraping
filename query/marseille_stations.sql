@@ -1,0 +1,1 @@
+SELECT id,postalcode,address,city, ST_X(gps) as latitude , ST_Y(gps) as longitude FROM Station WHERE city = 'Marseille';
