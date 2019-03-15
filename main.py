@@ -35,8 +35,8 @@ def main():
     insert_products(connection ,products(pdv_liste))
     insert_stations(connection ,stations(pdv_liste))
     insert_station_services(connection, station_services(pdv_liste,get_services(connection)))
-    insert_prices(connection, prices(pdv_liste))
-    insert_shortages(connection,shortages(pdv_liste))
+    insert_prices(connection, addPricesEnds(prices(pdv_liste))) 
+    insert_shortages(connection, shortages(pdv_liste))
     insert_closing(connection, closing(pdv_liste))
 
     connection.commit()

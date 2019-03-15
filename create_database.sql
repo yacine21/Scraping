@@ -40,7 +40,7 @@ CREATE TABLE Slot(
     start TIME NOT NULL,
     end TIME NOT NULL,
     UNIQUE (start , end),
-    CHECk ( end > start)
+    CHECK ( end > start)
 );
 
 CREATE TABLE Closing(
