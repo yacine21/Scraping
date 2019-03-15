@@ -17,7 +17,7 @@ CREATE TABLE Station(
     postalcode CHAR(5) NOT NULL,
     gps POINT,
     position ENUM('A','R','N') NOT NULL,
-    automate BOOLEAN NOT NULL,
+    automate BOOLEAN NOT NULL
 );
 
 CREATE TABLE Service(
