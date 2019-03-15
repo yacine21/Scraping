@@ -17,7 +17,7 @@ CREATE TABLE Station(
     postalcode CHAR(5) NOT NULL,
     gps POINT,
     position ENUM('A','R','N') NOT NULL,
-    automate BOOLEAN NOT NULL,
+    automate BOOLEAN NOT NULL
 );
 
 CREATE TABLE Service(
@@ -40,7 +40,7 @@ CREATE TABLE Slot(
     start TIME NOT NULL,
     end TIME NOT NULL,
     UNIQUE (start , end),
-    CHECk ( end > start)
+    CHECK ( end > start)
 );
 
 CREATE TABLE Closing(
@@ -65,7 +65,8 @@ CREATE TABLE Price(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     stationId INT NOT NULL,
     productId INT NOT NULL,
-    date DATETIME NOT NULL,
+    start DATETIME NOT NULL,
+    end DATETIME,
     value FLOAT NOT NULL,
     FOREIGN KEY (stationId) REFERENCES Station(id),
     FOREIGN KEY (productId) REFERENCES Product(id)
