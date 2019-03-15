@@ -65,7 +65,8 @@ CREATE TABLE Price(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     stationId INT NOT NULL,
     productId INT NOT NULL,
-    date DATETIME NOT NULL,
+    start DATETIME NOT NULL,
+    end DATETIME,
     value FLOAT NOT NULL,
     FOREIGN KEY (stationId) REFERENCES Station(id),
     FOREIGN KEY (productId) REFERENCES Product(id)

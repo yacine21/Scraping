@@ -6,6 +6,7 @@ from service import *
 from product import *
 from stations import *
 from price import *
+import sys
 
 def clear_db(connection):
     cursor = connection.cursor()
@@ -19,12 +20,13 @@ def clear_db(connection):
 
 def main():
     dotenv.load_dotenv()
+
     connection = mysql.connector.connect(
         host=os.getenv('dbHostname'), user = os.getenv('dbUser') , passwd = os.getenv('dbPass') , database=os.getenv('dbName')
     )
 
-    base_path = os.path.dirname(os.path.realpath(__file__))
-    xml_file = os.path.join(base_path,"data/PrixCarburants_annuel_2019.xml")
+    #base_path = os.path.dirname(os.path.realpath(__file__))
+    #xml_file = os.path.join(base_path,"data/PrixCarburants_annuel_2019.xml")
    
     tree = et.parse(sys.argv[1])
     pdv_liste = tree.getroot()
