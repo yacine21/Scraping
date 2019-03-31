@@ -1,0 +1,38 @@
+<!ELEMENT pdv_liste (pdv*)>
+<!ELEMENT pdv (adresse,ville,horaires,services,(prix | rupture | fermeture)*)>
+ <!ATTLIST pdv id CDATA #REQUIRED>
+ <!ATTLIST pdv latitude CDATA #REQUIRED>
+ <!ATTLIST pdv longitude CDATA #REQUIRED>
+ <!ATTLIST pdv cp CDATA #REQUIRED>
+ <!ATTLIST pdv pop CDATA #REQUIRED>
+ <!ELEMENT adresse (#PCDATA)>
+ <!ELEMENT ville (#PCDATA)>
+ <!ELEMENT horaires (jour*)>
+  <!ATTLIST horaires automate-24-24 CDATA #IMPLIED>
+  <!ELEMENT jour (horaire*)>
+   <!ATTLIST jour id CDATA #REQUIRED>
+   <!ATTLIST jour nom CDATA #REQUIRED>
+   <!ATTLIST jour ferme CDATA #REQUIRED>
+   <!ELEMENT horaire EMPTY>
+    <!ATTLIST horaire ouverture CDATA #REQUIRED>
+    <!ATTLIST horaire fermeture CDATA #REQUIRED>
+ <!ELEMENT services (service*)>
+  <!ELEMENT service (#PCDATA)>
+ <!ELEMENT prix EMPTY>
+  <!ATTLIST prix nom CDATA #IMPLIED> 
+  <!ATTLIST prix id CDATA #IMPLIED> 
+  <!ATTLIST prix maj CDATA #IMPLIED> 
+  <!ATTLIST prix valeur CDATA #IMPLIED> 
+ <!ELEMENT rupture EMPTY> 
+  <!ATTLIST rupture nom CDATA #IMPLIED> 
+  <!ATTLIST rupture id CDATA #IMPLIED> 
+  <!ATTLIST rupture debut CDATA #IMPLIED> 
+  <!ATTLIST rupture fin CDATA #IMPLIED> 
+ <!ELEMENT fermeture EMPTY> 
+  <!ATTLIST fermeture type CDATA #IMPLIED> 
+  <!ATTLIST fermeture fin CDATA #IMPLIED> 
+  <!ATTLIST fermeture debut CDATA #IMPLIED> 
+  
+   
+
+

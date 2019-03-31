@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs = "http://www.w3.org/2001/XMLSchema">
+<xs:simpleType name="floatorEmpty">
+    <xs:union>
+        <xs:simpleType>
+            <xs:restriction base="xs:float"/>
+        </xs:simpleType>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:union>
+
+</xs:simpleType>
+<xs:simpleType name="DateTimeorEmpty">
+    <xs:union>
+        <xs:simpleType>
+            <xs:restriction base="xs:dateTime"/>
+        </xs:simpleType>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:union>
+
+</xs:simpleType>
+<xs:simpleType name="popType">
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="A"/>
+                <xs:enumeration value="R"/>
+                <xs:enumeration value="N"/>
+            </xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="codePostale">
+    
+            <xs:restriction base="xs:string">
+            <xs:pattern value="[0,9]{5}"/>   
+            </xs:restriction> 
+</xs:simpleType>
+<xs:simpleType name="fermetureType">
+    
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="T"/>
+                <xs:enumeration value="D"/>
+            </xs:restriction>
+</xs:simpleType>
+
+<xs:element name = "pdv_liste">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="pdv" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="adresse" type="xs:string"/>
+                        <xs:element name="ville" type="xs:string"/>
+                        <xs:element name="horaires" >
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="jour" minOccurs="7" maxOccurs="7">
+                                          
+                                        <xs:complexType>
+                                             <xs:sequence>
+                                            
+                                         
+                                               
+                                            <xs:element name="horaire" minOccurs="0" maxOccurs="unbounded">
+                                                    <xs:complexType>
+                                                            <xs:attribute name="ouverture" type="xs:string" use="required"/>
+                                                            <xs:attribute name="fermeture" type="xs:string" use="required"/>
+                                                      
+                                                    </xs:complexType>
+                                            </xs:element>
+                                             </xs:sequence>
+                                            <xs:attribute name="id" type="xs:integer" use ="required"/>
+                                            <xs:attribute name="nom" type="xs:string" use ="required"/>
+                                            <xs:attribute name="ferme" type="xs:string" use ="required"/>
+                                           
+                                           
+                                        </xs:complexType>
+                                    </xs:element>
+                                 </xs:sequence>  
+                                <xs:attribute name="automate-24-24" type="xs:string" use="required"/>
+                                      
+                            </xs:complexType>
+                        </xs:element>
+                             
+                        <xs:element name="services" >
+                            <xs:complexType>
+                                    <xs:sequence>
+                                    <xs:element name="service" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>    
+                       
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                         
+                        <xs:element name="prix" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="nom" type="xs:string"/>
+                                <xs:attribute name="id" type="xs:integer"/>
+                                <xs:attribute name="maj" type="xs:dateTime"/>
+                                <xs:attribute name="valeur" type="xs:integer"/>            
+                            </xs:complexType>
+                        </xs:element>
+       
+                        <xs:element name="rupture" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="id" type="xs:integer"/>
+                                <xs:attribute name="nom" type="xs:string"/>
+                                <xs:attribute name="debut" type="xs:dateTime"/>
+                                <xs:attribute name="fin" type="xs:string"/>            
+                            </xs:complexType>
+                        </xs:element>
+                      
+                        <xs:element name="fermeture" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="type" type="xs:string"/>
+                                <xs:attribute name="debut" type="xs:dateTime"/>
+                                <xs:attribute name="fin" type="xs:string"/>        
+                            </xs:complexType>
+                        </xs:element>
+                     </xs:choice>
+
+                     </xs:sequence> 
+
+                         
+       
+        <xs:attribute name="id" type="xs:integer"/>
+        <xs:attribute name="latitude" type="xs:string"/>
+        <xs:attribute name="longitude" type="xs:string"/>
+        <xs:attribute name="cp" type="xs:string"/>
+        <xs:attribute name="pop" type="xs:string"/>   
+ 
+            </xs:complexType>
+            </xs:element>
+         </xs:sequence> 
+    </xs:complexType>
+</xs:element>
+</xs:schema>
